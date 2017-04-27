@@ -16,7 +16,10 @@ describe 'Bootstrap', ->
       port: undefined,
       disableLogging: true
       logFn: @logFn
+      oauthCallbackUrl: 'http://localhost/bootstrap/callback'
       meshbluConfig:
+        uuid: 'some-uuid'
+        token: 'some-token'
         hostname: 'localhost'
         protocol: 'http'
         resolveSrv: false
@@ -34,13 +37,6 @@ describe 'Bootstrap', ->
 
   describe 'On GET /bootstrap', ->
     beforeEach (done) ->
-      userAuth = new Buffer('some-uuid:some-token').toString 'base64'
-
-      @authDevice = @meshblu
-        .post '/authenticate'
-        .set 'Authorization', "Basic #{userAuth}"
-        .reply 204
-
       options =
         uri: '/bootstrap'
         baseUrl: "http://localhost:#{@serverPort}"
@@ -52,8 +48,5 @@ describe 'Bootstrap', ->
       request.get options, (error, @response, @body) =>
         done error
 
-    it 'should return a 200', ->
-      expect(@response.statusCode).to.equal 200
-
-    it 'should auth the request with meshblu', ->
-      @authDevice.done()
+    it 'should return a 201', ->
+      expect(@response.statusCode).to.equal 201

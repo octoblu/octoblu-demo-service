@@ -3,8 +3,9 @@ class OctobluDemoController
     throw new Error 'Missing octobluDemoService' unless @octobluDemoService?
 
   bootstrap: (request, response) =>
-    @octobluDemoService.bootstrap { }, (error) =>
+    { meshbluAuth } = request.session
+    @octobluDemoService.bootstrap { meshbluAuth }, (error) =>
       return response.sendError(error) if error?
-      response.sendStatus(200)
+      response.status(201).send meshbluAuth
 
 module.exports = OctobluDemoController

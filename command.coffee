@@ -5,14 +5,16 @@ Server         = require './src/server'
 
 envConfig = {
   PORT: envalid.num({ default: 80, devDefault: 3000 })
+  OAUTH_CALLBACK_URL: envalid.url()
 }
 
 class Command
   constructor: ->
     env = envalid.cleanEnv process.env, envConfig
     @serverOptions = {
-      meshbluConfig : new MeshbluConfig().toJSON()
-      port          : env.PORT
+      meshbluConfig    : new MeshbluConfig().toJSON()
+      port             : env.PORT
+      oauthCallbackUrl : env.OAUTH_CALLBACK_URL
     }
 
   panic: (error) =>
