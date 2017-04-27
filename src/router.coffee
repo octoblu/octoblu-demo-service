@@ -9,8 +9,8 @@ class Router
     octobluDemoController = new OctobluDemoController { @octobluDemoService }
 
     app.get '/', passport.authenticate('octoblu')
-    app.get '/bootstrap/callback', passport.authenticate('octoblu'), (request, response) =>
-      response.redirect('/bootstrap')
-    app.get '/bootstrap', octobluDemoController.bootstrap
+    app.get '/callback', passport.authenticate('octoblu', {
+      failureRedirect: '/',
+    }), octobluDemoController.bootstrap
 
 module.exports = Router

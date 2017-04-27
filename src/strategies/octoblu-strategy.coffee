@@ -1,6 +1,7 @@
 _               = require 'lodash'
 passport        = require 'passport'
 PassportOctoblu = require 'passport-octoblu'
+MeshbluHttp     = require 'meshblu-http'
 debug           = require('debug')('octoblu-demo-service:octoblu-strategy')
 
 class OctobluStrategy
@@ -9,21 +10,31 @@ class OctobluStrategy
     throw new Error 'OctobluStrategy: requires @oauthCallbackUrl' unless @oauthCallbackUrl?
 
   use: =>
-    passportOctoblu = new PassportOctoblu {
+    passport.use new PassportOctoblu {
       clientID:          @meshbluConfig.uuid
       clientSecret:      @meshbluConfig.token
-      meshbluConfig:     @meshbluConfig
+      meshbluConfig:     _.cloneDeep @meshbluConfig
       callbackUrl:       @oauthCallbackUrl
       passReqToCallback: true
-    }, (req, bearerToken, secret, profile, next) =>
-      debug 'authenticated', { bearerToken, secret, profile }
+    }, (request, bearerToken, secret, profile, next) =>
+      debug 'authenticated', { bearerToken, secret }
       { uuid, token } = @_parseBearerToken bearerToken
-      meshbluAuth = _.cloneDeep @meshbluConfig
-      meshbluAuth.uuid = uuid
-      meshbluAuth.token = token
-      req.session.meshbluAuth = meshbluAuth
-      next null, profile
-    passport.use passportOctoblu
+      @_generateMeshbluAuth { uuid, token }, (error, meshbluAuth) =>
+        return next(error) if error?
+        request.meshbluAuth = meshbluAuth
+        next null, meshbluAuth
+
+  _generateMeshbluAuth: ({ uuid, token }, callback) =>
+    meshbluHttp = new MeshbluHttp @_generateNewConfig { uuid, token }
+    meshbluHttp.generateAndStoreToken uuid, (error, result) =>
+      return callback error if error?
+      callback null, @_generateNewConfig result
+
+  _generateNewConfig: ({ uuid, token }) =>
+    meshbluAuth = _.cloneDeep @meshbluConfig
+    meshbluAuth.uuid = uuid
+    meshbluAuth.token = token
+    return meshbluAuth
 
   _parseBearerToken: (bearerToken) =>
     decoded = new Buffer(bearerToken, 'base64').toString('utf8')

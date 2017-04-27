@@ -21,7 +21,13 @@ class Server
     app = octobluExpress({ @logFn, @disableLogging })
 
     app.use cookieParser()
-    app.use session @_sessionOptions()
+    app.use session {
+      name: 'octoblu-demo-service'
+      secret: 'some-not-secret-token'
+      maxAge: 24 * 60 * 60 * 1000
+      sameSite: 'strict'
+      overwrite: true
+    }
 
     passport.serializeUser   (user, done) => done null, user
     passport.deserializeUser (user, done) => done null, user
@@ -44,14 +50,5 @@ class Server
 
   destroy: =>
     @server.destroy()
-
-  _sessionOptions: =>
-    return {
-      name: 'octoblu-demo-service'
-      secret: 'some-not-secret-token'
-      maxAge: 60 * 60 * 1000
-      sameSite: 'lax'
-      overwrite: true
-    }
 
 module.exports = Server
