@@ -1,7 +1,8 @@
 {
   "connector": "meshblu-connector-hue-light",
-  "name": "Synergy Hue Light",
+  "name": "Synergy Light",
   "type": "device:hue-light",
+  "deviceTag": "demo:light:v1.0.0",
   "connector": "meshblu-connector-hue-light",
   "iconUri": "http://icons.octoblu.com/device/hue-light.svg",
   "connectorMetadata": {
@@ -20,9 +21,7 @@
     "tags": [
       "Home Automation"
     ],
-    "githubSlug": "octoblu/meshblu-connector-hue-light",
-    "createUri": "https://connector-factory.octoblu.com/connectors/create/octoblu/meshblu-connector-hue-light",
-    "configureUri": "https://connector-factory.octoblu.com/connectors/configure/:uuid"
+    "githubSlug": "octoblu/meshblu-connector-hue-light"
   },
   "schemas": {
     "configure": {

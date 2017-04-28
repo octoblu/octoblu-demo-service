@@ -1,0 +1,58 @@
+{
+  "connector": "meshblu-connector-powermate",
+  "name": "Synergy Button",
+  "type": "device:powermate",
+  "deviceTag": "demo:button:v1.0.0", 
+  "connector": "meshblu-connector-powermate",
+  "iconUri": "http://icons.octoblu.com/device/powermate.svg",
+  "connectorMetadata": {
+    "version": "v2.0.11",
+    "githubSlug": "octoblu/meshblu-connector-powermate",
+    "stopped": false,
+    "meshblu": {
+      "domain": "octoblu.com"
+    }
+  },
+  "octoblu.registryItem": {
+    "_id": "octoblu-meshblu-connector-powermate",
+    "name": "Griffin Powermate",
+    "description": "A usb button and encoder wheel that you can use to control applications and automation!",
+    "type": "device:powermate",
+    "tags": ["Maker"],
+    "githubSlug": "octoblu/meshblu-connector-powermate"
+  },
+  "schemas": {
+    "configure": {
+      "Default": {
+        "properties": {
+          "options": {
+            "properties": {
+            },
+            "title": "Options",
+            "type": "object"
+          }
+        },
+        "title": "Default Configuration",
+        "type": "object",
+        "x-form-schema": {
+          "angular": "configure.Default.angular"
+        }
+      }
+    },
+    "form": {
+      "configure": {
+        "Default": {
+          "angular": [
+          ]
+        }
+      },
+      "message": {
+      }
+    },
+    "message": {
+    },
+    "response": {
+    },
+    "version": "2.0.0"
+  }
+}

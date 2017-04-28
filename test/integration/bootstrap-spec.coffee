@@ -1,4 +1,4 @@
-{beforeEach, afterEach, describe, it} = global
+{beforeEach, afterEach, describe, xdescribe, it} = global
 {expect}      = require 'chai'
 sinon         = require 'sinon'
 shmock        = require '@octoblu/shmock'
@@ -35,7 +35,7 @@ describe 'Bootstrap', ->
     @meshblu.destroy()
     @server.destroy()
 
-  describe 'On GET /bootstrap', ->
+  xdescribe 'On GET /bootstrap', ->
     beforeEach (done) ->
       options =
         uri: '/bootstrap'

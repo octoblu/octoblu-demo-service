@@ -9,7 +9,10 @@ class OctobluDemoController
     debug 'bootstrap', { meshbluAuth }
     return response.sendStatus(401) unless meshbluAuth?
     @octobluDemoService.bootstrap { meshbluAuth }, (error) =>
-      return response.sendError(error) if error?
-      response.redirect('https://app.octoblu.com/')
+      if error?
+        console.error error
+        response.redirect('/auth/failed')
+        return
+      response.redirect('https://app.octoblu.com/things/my')
 
 module.exports = OctobluDemoController
