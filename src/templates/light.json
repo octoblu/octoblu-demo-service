@@ -4,7 +4,7 @@
   "type": "device:hue-light",
   "deviceTag": "demo:light:v1.0.0",
   "connector": "meshblu-connector-hue-light",
-  "iconUri": "http://icons.octoblu.com/device/hue-light.svg",
+  "iconUri": "https://icons.octoblu.com/device/hue-light.svg",
   "connectorMetadata": {
     "version": "v4.1.5",
     "githubSlug": "octoblu/meshblu-connector-hue-light",

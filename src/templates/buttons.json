@@ -2,7 +2,7 @@
   "name": "Synergy Meeting Demo",
   "type": "device:buttons",
   "deviceTag": "demo:meeting-buttons:v1.0.0",
-  "iconUri": "http://icons.octoblu.com/list.svg",
+  "iconUri": "https://icons.octoblu.com/list.svg",
   "buttons": [
     {
       "name": "Start Meeting",
