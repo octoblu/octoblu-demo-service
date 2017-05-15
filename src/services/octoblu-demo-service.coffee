@@ -2,8 +2,6 @@ _               = require 'lodash'
 async           = require 'async'
 MeshbluHttp     = require 'meshblu-http'
 buttonTemplate  = require '../templates/button.json'
-buttonsTemplate = require '../templates/buttons.json'
-rulesetTemplate = require '../templates/ruleset.json'
 lightTemplate   = require '../templates/light.json'
 debug           = require('debug')('octoblu-demo-service:service')
 
@@ -14,7 +12,6 @@ class OctobluDemoService
   _createDevices: ({ meshbluAuth }, callback) =>
     async.parallel [
       async.apply @_createButtonDevice, { meshbluAuth }
-      # async.apply @_createButtonsDevice, { meshbluAuth }
       async.apply @_createLightDevice, { meshbluAuth }
     ], callback
 
@@ -31,20 +28,6 @@ class OctobluDemoService
     @_findOrCreate options, (error, device) =>
       return callback error if error?
       meshbluHttp.updateDangerously device.uuid, buttonTemplate, callback
-
-  _createButtonsDevice: ({ meshbluAuth }, callback) =>
-    debug 'createButtonsDevice', { meshbluAuth }
-    meshbluHttp = new MeshbluHttp _.cloneDeep meshbluAuth
-    owner = meshbluAuth.uuid
-    options = {
-      type: 'device:buttons'
-      deviceTag: 'demo:meeting-buttons:v1.0.0'
-      meshbluHttp
-      owner
-    }
-    @_findOrCreate options, (error, device) =>
-      return callback error if error?
-      meshbluHttp.updateDangerously device.uuid, buttonsTemplate, callback
 
   _createLightDevice: ({ meshbluAuth }, callback) =>
     debug 'createLightDevice', { meshbluAuth }

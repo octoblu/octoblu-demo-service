@@ -8,6 +8,12 @@
             "path": ".masterDevice",
             "operator": "exists",
             "value": true
+          },
+          {
+            "fact": "device",
+            "path": ".deviceTag",
+            "operator": "equal",
+            "value": "demo:light:v1.0.0"
           }
         ]
       },
@@ -15,7 +21,7 @@
         "type": "meshblu",
         "params": {
           "operation": "update",
-          "uuid": "{{device.desiredState}}",
+          "uuid": "{{device.masterDevice.uuid}}",
           "data": {
             "$set": {
               "desiredState": "{{device.desiredState}}"

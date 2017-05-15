@@ -1,21 +1,17 @@
 {
   "$addToSet": {
-    "meshblu.forwarders.broadcast.sent": [
-      {
-        "type": "webhook",
-        "url": "https://command-and-control.octoblu.com/v1/messages",
-        "method": "POST",
-        "generateAndForwardMeshbluCredentials": true
-      }
-    ],
-    "meshblu.forwarders.configure.sent": [
-      {
-        "type": "webhook",
-        "url": "https://command-and-control.octoblu.com/v1/messages",
-        "method": "POST",
-        "generateAndForwardMeshbluCredentials": true
-      }
-    ]
+    "meshblu.forwarders.broadcast.sent": {
+      "type": "webhook",
+      "url": "https://command-and-control.octoblu.com/v1/messages",
+      "method": "POST",
+      "generateAndForwardMeshbluCredentials": true
+    },
+    "meshblu.forwarders.configure.sent": {
+      "type": "webhook",
+      "url": "https://command-and-control.octoblu.com/v1/messages",
+      "method": "POST",
+      "generateAndForwardMeshbluCredentials": true
+    }
   },
   "$set": {
     "connector": "meshblu-connector-hue-light",
@@ -23,7 +19,18 @@
     "type": "device:hue-light",
     "deviceTag": "demo:light:v1.0.0",
     "masterDevice": {
-      "$ref": "meshbludevice://21f4ba51-38c5-4bd0-899c-f8ed4bcef82b"
+      "$ref": "meshbludevice://2aa1df52-c0ba-4c25-9d3f-f1b703d4fa2c"
+    },
+    "commandAndControl": {
+      "rulesets": [
+        {
+          "uuid": "c5efb688-3b5d-4923-972f-8c30af3140c7"
+        }
+      ],
+      "errorDevice": {
+        "uuid": "7d5d27d0-0ada-44a9-b676-00241e299f5f",
+        "logLevel": "info"
+      }
     },
     "online": true,
     "connector": "meshblu-connector-hue-light",
