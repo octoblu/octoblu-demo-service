@@ -18,9 +18,6 @@
     "name": "Synergy Light",
     "type": "device:hue-light",
     "deviceTag": "demo:light:v1.0.0",
-    "masterDevice": {
-      "$ref": "meshbludevice://2aa1df52-c0ba-4c25-9d3f-f1b703d4fa2c"
-    },
     "commandAndControl": {
       "rulesets": [
         {
@@ -31,6 +28,9 @@
         "uuid": "7d5d27d0-0ada-44a9-b676-00241e299f5f",
         "logLevel": "info"
       }
+    },
+    "masterDevice": {
+      "uuid": "2aa1df52-c0ba-4c25-9d3f-f1b703d4fa2c"
     },
     "online": true,
     "connector": "meshblu-connector-hue-light",

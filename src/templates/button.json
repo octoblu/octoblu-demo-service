@@ -7,7 +7,7 @@
     "connector": "meshblu-connector-powermate",
     "iconUri": "https://icons.octoblu.com/device/powermate.svg",
     "masterDevice": {
-      "$ref": "meshbludevice://38dac67b-ae4a-4cf4-99b2-c9183fc6a0c5"
+      "uuid": "38dac67b-ae4a-4cf4-99b2-c9183fc6a0c5"
     },
     "online": true,
     "connectorMetadata": {
