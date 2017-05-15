@@ -1,0 +1,28 @@
+{
+  "if": {
+    "changeDesiredState": {
+      "conditions": {
+        "all": [
+          {
+            "fact": "device",
+            "path": ".masterDevice",
+            "operator": "exists",
+            "value": true
+          }
+        ]
+      },
+      "event": {
+        "type": "meshblu",
+        "params": {
+          "operation": "update",
+          "uuid": "{{device.desiredState}}",
+          "data": {
+            "$set": {
+              "desiredState": "{{device.desiredState}}"
+            }
+          }
+        }
+      }
+    }
+  }
+}

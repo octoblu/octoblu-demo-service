@@ -1,255 +1,165 @@
 {
-  "connector": "meshblu-connector-hue-light",
-  "name": "Synergy Light",
-  "type": "device:hue-light",
-  "deviceTag": "demo:light:v1.0.0",
-  "connector": "meshblu-connector-hue-light",
-  "iconUri": "https://icons.octoblu.com/device/hue-light.svg",
-  "connectorMetadata": {
-    "version": "v4.1.5",
-    "githubSlug": "octoblu/meshblu-connector-hue-light",
-    "stopped": false,
-    "meshblu": {
-      "domain": "octoblu.com"
-    }
-  },
-  "octoblu.registryItem": {
-    "_id": "octoblu-meshblu-connector-hue-light",
-    "name": "Phillips Hue Light",
-    "description": "Philips hue combines brilliant LED light with intuitive technology, then puts it in the palm of your hand. Experiment with shades of white, from invigorating blue/white to cozy yellow/white.",
-    "type": "device:hue-light",
-    "tags": [
-      "Home Automation"
+  "$addToSet": {
+    "meshblu.forwarders.broadcast.sent": [
+      {
+        "type": "webhook",
+        "url": "https://command-and-control.octoblu.com/v1/messages",
+        "method": "POST",
+        "generateAndForwardMeshbluCredentials": true
+      }
     ],
-    "githubSlug": "octoblu/meshblu-connector-hue-light"
+    "meshblu.forwarders.configure.sent": [
+      {
+        "type": "webhook",
+        "url": "https://command-and-control.octoblu.com/v1/messages",
+        "method": "POST",
+        "generateAndForwardMeshbluCredentials": true
+      }
+    ]
   },
-  "schemas": {
-    "configure": {
-      "Advanced": {
-        "properties": {
-          "desiredState": {
-            "properties": {
-              "alert": {
-                "title": "Alert Effect",
-                "type": "string"
-              },
-              "color": {
-                "title": "Color",
-                "type": "string"
-              },
-              "effect": {
-                "title": "Dynamic Effect",
-                "type": "string"
-              },
-              "on": {
-                "title": "Light On",
-                "type": "boolean"
-              },
-              "transitiontime": {
-                "minimum": 0,
-                "title": "Transition Time (in milliseconds)",
-                "type": "integer"
-              }
-            },
-            "title": "Desired State",
-            "type": "object"
-          },
-          "options": {
-            "properties": {
-              "apiUsername": {
-                "default": "newdeveloper",
-                "title": "API Username",
-                "type": "string"
-              },
-              "ipAddress": {
-                "title": "Bridge IP Address",
-                "type": "string"
-              },
-              "lightNumber": {
-                "default": 0,
-                "minimum": 0,
-                "title": "Light Number",
-                "type": "integer"
-              }
-            },
-            "title": "Options",
-            "type": "object"
-          },
-          "required": [
-            "lightNumber",
-            "apiUsername"
-          ]
-        },
-        "title": "Advanced Configuration",
-        "type": "object",
-        "x-form-schema": {
-          "angular": "configure.Advanced.angular"
-        }
-      },
-      "Default": {
-        "properties": {
-          "desiredState": {
-            "properties": {
-              "alert": {
-                "title": "Alert Effect",
-                "type": "string"
-              },
-              "color": {
-                "title": "Color",
-                "type": "string"
-              },
-              "effect": {
-                "title": "Dynamic Effect",
-                "type": "string"
-              },
-              "on": {
-                "title": "Light On",
-                "type": "boolean"
-              },
-              "transitiontime": {
-                "minimum": 0,
-                "title": "Transition Time (in milliseconds)",
-                "type": "integer"
-              }
-            },
-            "title": "Desired State",
-            "type": "object"
-          },
-          "options": {
-            "properties": {
-              "lightNumber": {
-                "default": 0,
-                "minimum": 0,
-                "title": "Light Number",
-                "type": "integer"
-              }
-            },
-            "title": "Options",
-            "type": "object"
-          },
-          "required": [
-            "lightNumber"
-          ]
-        },
-        "title": "Default Configuration",
-        "type": "object",
-        "x-form-schema": {
-          "angular": "configure.Default.angular"
-        }
+  "$set": {
+    "connector": "meshblu-connector-hue-light",
+    "name": "Synergy Light",
+    "type": "device:hue-light",
+    "deviceTag": "demo:light:v1.0.0",
+    "masterDevice": {
+      "$ref": "meshbludevice://21f4ba51-38c5-4bd0-899c-f8ed4bcef82b"
+    },
+    "online": true,
+    "connector": "meshblu-connector-hue-light",
+    "iconUri": "https://icons.octoblu.com/device/hue-light.svg",
+    "meshblu.forwarders.version": "2.0.0",
+    "connectorMetadata": {
+      "version": "v4.1.7",
+      "githubSlug": "octoblu/meshblu-connector-hue-light",
+      "stopped": false,
+      "meshblu": {
+        "domain": "octoblu.com"
       }
     },
-    "form": {
+    "octoblu.registryItem": {
+      "_id": "octoblu-meshblu-connector-hue-light",
+      "name": "Phillips Hue Light",
+      "description": "Philips hue combines brilliant LED light with intuitive technology, then puts it in the palm of your hand. Experiment with shades of white, from invigorating blue/white to cozy yellow/white.",
+      "type": "device:hue-light",
+      "tags": [
+        "Home Automation"
+      ],
+      "githubSlug": "octoblu/meshblu-connector-hue-light"
+    },
+    "schemas": {
       "configure": {
-        "Advanced": {
-          "angular": [
-            {
-              "key": "options.ipAddress"
-            },
-            {
-              "key": "options.apiUsername"
-            },
-            {
-              "key": "options.lightNumber"
-            },
-            {
-              "key": "desiredState.color"
-            },
-            {
-              "key": "desiredState.on"
-            },
-            {
-              "key": "desiredState.transitiontime"
-            },
-            {
-              "key": "desiredState.alert",
-              "titleMap": [
-                {
-                  "name": "None",
-                  "value": "none"
-                },
-                {
-                  "name": "Flash Once (select)",
-                  "value": "select"
-                },
-                {
-                  "name": "Flash Repeatedly (lselect)",
-                  "value": "lselect"
-                }
-              ],
-              "type": "select"
-            },
-            {
-              "key": "desiredState.effect",
-              "titleMap": [
-                {
-                  "name": "None",
-                  "value": "none"
-                },
-                {
-                  "name": "Color Loop",
-                  "value": "colorloop"
-                }
-              ],
-              "type": "select"
-            }
-          ]
-        },
         "Default": {
-          "angular": [
-            {
-              "key": "options.lightNumber"
-            },
-            {
-              "key": "desiredState.color"
-            },
-            {
-              "key": "desiredState.on"
-            },
-            {
-              "key": "desiredState.transitiontime"
-            },
-            {
-              "key": "desiredState.alert",
-              "titleMap": [
-                {
-                  "name": "None",
-                  "value": "none"
+          "properties": {
+            "desiredState": {
+              "properties": {
+                "alert": {
+                  "title": "Alert Effect",
+                  "type": "string"
                 },
-                {
-                  "name": "Flash Once (select)",
-                  "value": "select"
+                "color": {
+                  "title": "Color",
+                  "type": "string"
                 },
-                {
-                  "name": "Flash Repeatedly (lselect)",
-                  "value": "lselect"
+                "effect": {
+                  "title": "Dynamic Effect",
+                  "type": "string"
+                },
+                "on": {
+                  "title": "Light On",
+                  "type": "boolean"
+                },
+                "transitiontime": {
+                  "minimum": 0,
+                  "title": "Transition Time (in milliseconds)",
+                  "type": "integer"
                 }
-              ],
-              "type": "select"
+              },
+              "title": "Desired State",
+              "type": "object"
             },
-            {
-              "key": "desiredState.effect",
-              "titleMap": [
-                {
-                  "name": "None",
-                  "value": "none"
-                },
-                {
-                  "name": "Color Loop",
-                  "value": "colorloop"
+            "options": {
+              "properties": {
+                "lightNumber": {
+                  "default": 0,
+                  "minimum": 0,
+                  "title": "Light Number",
+                  "type": "integer"
                 }
-              ],
-              "type": "select"
-            }
-          ]
+              },
+              "title": "Options",
+              "type": "object"
+            },
+            "required": [
+              "lightNumber"
+            ]
+          },
+          "title": "Default Configuration",
+          "type": "object",
+          "x-form-schema": {
+            "angular": "configure.Default.angular"
+          }
+        }
+      },
+      "form": {
+        "configure": {
+          "Default": {
+            "angular": [
+              {
+                "key": "options.lightNumber"
+              },
+              {
+                "key": "desiredState.color"
+              },
+              {
+                "key": "desiredState.on"
+              },
+              {
+                "key": "desiredState.transitiontime"
+              },
+              {
+                "key": "desiredState.alert",
+                "titleMap": [
+                  {
+                    "name": "None",
+                    "value": "none"
+                  },
+                  {
+                    "name": "Flash Once (select)",
+                    "value": "select"
+                  },
+                  {
+                    "name": "Flash Repeatedly (lselect)",
+                    "value": "lselect"
+                  }
+                ],
+                "type": "select"
+              },
+              {
+                "key": "desiredState.effect",
+                "titleMap": [
+                  {
+                    "name": "None",
+                    "value": "none"
+                  },
+                  {
+                    "name": "Color Loop",
+                    "value": "colorloop"
+                  }
+                ],
+                "type": "select"
+              }
+            ]
+          }
+        },
+        "message": {
         }
       },
       "message": {
-      }
-    },
-    "message": {
-    },
-    "response": {
-    },
-    "version": "2.0.0"
+      },
+      "response": {
+      },
+      "version": "2.0.0"
+    }
   }
 }

@@ -1,16 +1,18 @@
 {
-  "name": "Synergy Meeting Demo",
-  "type": "device:buttons",
-  "deviceTag": "demo:meeting-buttons:v1.0.0",
-  "iconUri": "https://icons.octoblu.com/list.svg",
-  "buttons": [
-    {
-      "name": "Start Meeting",
-      "topic": "start-meeting"
-    },
-    {
-      "name": "End Meeting",
-      "topic": "end-meeting"
-    }
-  ]
+  "$set": {
+    "name": "Synergy Meeting Demo",
+    "type": "device:buttons",
+    "deviceTag": "demo:meeting-buttons:v1.0.0",
+    "iconUri": "https://icons.octoblu.com/list.svg",
+    "buttons": [
+      {
+        "name": "Start Meeting",
+        "topic": "start-meeting"
+      },
+      {
+        "name": "End Meeting",
+        "topic": "end-meeting"
+      }
+    ]
+  }
 }

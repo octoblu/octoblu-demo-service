@@ -1,0 +1,13 @@
+{
+  "$set": {
+    "name": "Synergy Demo Ruleset",
+    "type": "meshblu:ruleset",
+    "deviceTag": "demo:ruleset:v1.0.0",
+    "rules": [
+      {
+        "url": "https://raw.githubusercontent.com/octoblu/octoblu-demo-service/master/rules/change-light.json"
+      }
+    ],
+    "meshblu.version": "2.0.0"
+  }
+}
