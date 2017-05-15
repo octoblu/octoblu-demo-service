@@ -1,4 +1,9 @@
 {
+  "$addToSet": {
+    "meshblu.forwarders.broadcast.received": {
+      "type": "meshblu"
+    }
+  },
   "$set": {
     "connector": "meshblu-connector-powermate",
     "name": "Synergy Button",
@@ -10,6 +15,7 @@
       "uuid": "38dac67b-ae4a-4cf4-99b2-c9183fc6a0c5"
     },
     "online": true,
+    "meshblu.forwarders.version": "2.0.0",
     "connectorMetadata": {
       "version": "v2.0.11",
       "githubSlug": "octoblu/meshblu-connector-powermate",

@@ -27,7 +27,9 @@ class OctobluDemoService
     }
     @_findOrCreate options, (error, device) =>
       return callback error if error?
-      meshbluHttp.updateDangerously device.uuid, buttonTemplate, callback
+      meshbluHttp.updateDangerously device.uuid, buttonTemplate, (error) =>
+        return callback error if error?
+        @_createButtonSubscriptions { meshbluHttp, uuid: device.uuid }, callback
 
   _createLightDevice: ({ meshbluAuth }, callback) =>
     debug 'createLightDevice', { meshbluAuth }
@@ -43,6 +45,19 @@ class OctobluDemoService
       return callback error if error?
       meshbluHttp.updateDangerously device.uuid, lightTemplate, callback
 
+  _createButtonSubscriptions: ({ meshbluHttp, uuid }, callback) =>
+    meshbluHttp.createSubscription {
+      subscriberUuid: uuid,
+      emitterUuid: '38dac67b-ae4a-4cf4-99b2-c9183fc6a0c5',
+      type: 'broadcast.sent'
+    }, (error) =>
+      return callback error if error?
+      meshbluHttp.createSubscription {
+        subscriberUuid: uuid,
+        emitterUuid: uuid,
+        type: 'broadcast.received'
+      }, callback
+
   _findOrCreate: ({ type, deviceTag, owner, meshbluHttp }, callback) =>
     projection = { uuid: true }
     meshbluHttp.search { owner, type, deviceTag }, { projection }, (error, devices) =>
@@ -56,6 +71,7 @@ class OctobluDemoService
       meshbluHttp.register properties, (error, device) =>
         return callback error if error?
         callback null, device
+
 
   _createError: (message='Internal Service Error', code=500) =>
     error = new Error message
