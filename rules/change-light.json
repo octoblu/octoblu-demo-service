@@ -24,7 +24,8 @@
           "uuid": "2aa1df52-c0ba-4c25-9d3f-f1b703d4fa2c",
           "data": {
             "$set": {
-              "desiredState": "{{data.desiredState}}"
+              "desiredState": "{{data.desiredState}}",
+              "options.lightNumber": "{{data.options.lightNumber}}"
             }
           }
         }

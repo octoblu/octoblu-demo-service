@@ -88,8 +88,8 @@
             "options": {
               "properties": {
                 "lightNumber": {
-                  "default": 0,
-                  "minimum": 0,
+                  "default": 1,
+                  "minimum": 1,
                   "title": "Light Number",
                   "type": "integer"
                 }
