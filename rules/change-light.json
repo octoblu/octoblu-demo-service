@@ -14,6 +14,12 @@
             "path": ".deviceTag",
             "operator": "equal",
             "value": "demo:light:v1.0.0"
+          },
+          {
+            "fact": "device",
+            "path": ".uuid",
+            "operator": "equal",
+            "value": "a08232bf-d6c7-469e-8194-987e48603f08"
           }
         ]
       },
