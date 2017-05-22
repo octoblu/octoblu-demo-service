@@ -74,6 +74,7 @@
                 },
                 "on": {
                   "title": "Light On",
+                  "default": true,
                   "type": "boolean"
                 },
                 "transitiontime": {
